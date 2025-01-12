@@ -171,9 +171,10 @@ const router = jsonServer.router({
 const middlewares = jsonServer.defaults();
 
 // Add JSON-Auth middleware
-middlewares.push(auth());
+// middlewares.push(auth());
 
 server.use(middlewares);
+server.use(auth());
 server.use(router);
 
 // Add this before server.use(router)
