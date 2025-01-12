@@ -175,6 +175,14 @@ const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
 server.use(auth());
+
+server.use((req, res, next) => {
+  if (req.headers.authorization) {
+    next(); // السماح بالمرور إذا كان التوكن موجودًا
+  } else {
+    res.status(401).json({ error: "Unauthorized" }); // منع الوصول
+  }
+});
 server.use(router);
 
 // Add this before server.use(router)
