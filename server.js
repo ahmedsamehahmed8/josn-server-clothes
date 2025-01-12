@@ -1,4 +1,5 @@
 import jsonServer from "json-server";
+import auth from "json-auth";
 
 const server = jsonServer.create();
 const router = jsonServer.router({
@@ -168,6 +169,9 @@ const router = jsonServer.router({
 });
 
 const middlewares = jsonServer.defaults();
+
+// Add JSON-Auth middleware
+middlewares.push(auth());
 
 server.use(middlewares);
 server.use(router);
